@@ -309,7 +309,7 @@
         }
 
         /**
-        * is TBar enabled or disabeld
+        * is TBarenabled or disabeld
         *
         */
         public function is_disabled(){
