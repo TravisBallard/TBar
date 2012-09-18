@@ -7,6 +7,9 @@
     class TBar
     {
         const email_address = 'admin@ansimation.net';
+        const version = '1.0';
+
+        private $settings = false;
 
         /**
         * magic
@@ -18,16 +21,23 @@
         {
             add_action( 'init', array( $this, 'init' ) );
             add_action( 'admin_init', array( $this, 'init' ) );
-            add_action( 'admin_bar_menu', array( $this, 'add_menu_items' ), intval( $position ) );
-            add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-            add_action( 'wp_print_styles', array( $this, 'enqueue_styles' ) );
-            add_action( 'admin_print_scripts', array( $this, 'enqueue_scripts' ) );
+            add_action( 'admin_init', array( $this, 'register_settings' ) );
+            add_action( 'admin_menu', array( $this, 'add_submenu_page' ) );
 
-            add_action( 'wp_ajax_get_window', array( $this, 'get_window' ) );
-            add_action( 'wp_ajax_nopriv_get_window', array( $this, 'get_window' ) );
+            $this->settings = $this->get_settings();
+            if( ! $this->is_disabled() )
+            {
+                add_action( 'admin_bar_menu', array( $this, 'add_menu_items' ), intval( $position ) );
+                add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+                add_action( 'wp_print_styles', array( $this, 'enqueue_styles' ) );
+                add_action( 'admin_print_scripts', array( $this, 'enqueue_scripts' ) );
 
-            add_action( 'wp_ajax_tbar_send_email', array( $this, 'ajax_send_email' ) );
-            add_action( 'wp_ajax_nopriv_tbar_send_email', array( $this, 'ajax_send_email' ) );
+                add_action( 'wp_ajax_get_window', array( $this, 'get_window' ) );
+                add_action( 'wp_ajax_nopriv_get_window', array( $this, 'get_window' ) );
+
+                add_action( 'wp_ajax_tbar_send_email', array( $this, 'ajax_send_email' ) );
+                add_action( 'wp_ajax_nopriv_tbar_send_email', array( $this, 'ajax_send_email' ) );
+            }
         }
 
         /**
@@ -161,6 +171,15 @@
                 'href' => '#',
                 'meta' => array( 'title' => 'Send me an email' )
             ) );
+
+            # about
+            $wp_admin_bar->add_node( array(
+                'id' => 'tb-about-link',
+                'parent' => 'tb-link',
+                'title' => 'About',
+                'href' => '#',
+                'meta' => array( 'title' => 'About TBar' )
+            ) );
         }
 
         /**
@@ -208,6 +227,7 @@
                     case 'contact' : self::load( 'contact.window' ); break;
                     case 'plugin' : self::load( 'request_plugin.window' ); break;
                     case 'theme' : self::load( 'request_theme.window' ); break;
+                    case 'about' : self::load( 'about.window' ); break;
                 }
                 die( ob_get_clean() );
             }
@@ -248,6 +268,52 @@
                 else
                     die( json_encode( (object)array( 'status' => 'ok', 'message' => 'Thanks for contacting me. I will be in touch shortly. -Travis' ) ) );
             }
+        }
+
+        /**
+        * get TBar version
+        *
+        */
+        public static function version(){
+            return self::version;
+        }
+
+        public function add_submenu_page(){
+            add_submenu_page( 'options-general.php', 'TBar Settings', 'TBar', 'manage_options', 'tbar', array( $this, 'settings_page' ) );
+        }
+
+        /**
+        * load settings page
+        *
+        */
+        public function settings_page(){
+            self::load( 'settings' );
+        }
+
+        /**
+        * register settings
+        *
+        */
+        public function register_settings()
+        {
+            register_setting( 'tbar', 'tbar' );
+            $this->settings = self::get_settings();
+        }
+
+        /**
+        * get settings
+        *
+        */
+        public static function get_settings(){
+            return false !== ( $settings = get_option( 'tbar' ) ) ? $settings : array();
+        }
+
+        /**
+        * is TBar enabled or disabeld
+        *
+        */
+        public function is_disabled(){
+            return (bool)$this->settings['disabled'];
         }
     }
 

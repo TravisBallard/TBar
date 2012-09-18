@@ -53,9 +53,6 @@ var tbar = {
             jQuery( 'body' ).prepend( tbar_window );
             tbar.get_window( 'theme' );
             return false;
-        },
-        hide_window: function(){
-
         }
     },
 
@@ -66,9 +63,16 @@ var tbar = {
             jQuery( 'body' ).prepend( tbar_window );
             tbar.get_window( 'contact' );
             return false;
-        },
-        hide_window: function(){
+        }
+    },
 
+    about: {
+        show_window: function(){
+            tbar.modal.show();
+            var tbar_window = jQuery('<div>').attr( 'id', 'tbar-window' );
+            jQuery( 'body' ).prepend( tbar_window );
+            tbar.get_window( 'about' );
+            return false;
         }
     },
 
@@ -138,6 +142,8 @@ jQuery(document).ready( function($){
     $('#wp-admin-bar-tb-contact-link .ab-item').click( function(){ return tbar.contact.show_window(); });
     $('#wp-admin-bar-tb-theme-link .ab-item').click( function(){ return tbar.request_theme.show_window(); });
     $('#wp-admin-bar-tb-plugin-link .ab-item').click( function(){ return tbar.request_plugin.show_window(); });
+    $('#wp-admin-bar-tb-about-link .ab-item').click( function(){ return tbar.about.show_window(); });
     $('#wp-admin-bar-tb-plugins-link-default .ab-item').attr( 'class', 'ab-item thickbox' );
-    $('.tbar-button.submit').click( function(){ tbar.request_plugin.send(); } );
+    $('.tbar-button-2.submit').click( function(){ tbar.request_plugin.send(); } );
+    $('.tbar-close-btn').click( function(){ window.parent.tbar.modal.hide(); } );
 });

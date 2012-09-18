@@ -43,7 +43,7 @@
 #tbar-contact-window #ajax-reply .success { /*background-color:#e7ffed; border:1px solid #b0e1bc;*/ color:#0d7628; }
 #tbar-contact-window #ajax-reply .error { /*background-color:#feeaef; border:1px solid #db9baa;*/ color:#760d26; }
 
-#tbar-window h1 {
+#tbar-window h1.page-title {
     background-color:#333;
     color:white;
     font-family:verdana, tahoma, sans-serif;
@@ -181,7 +181,7 @@ tbar-button::-moz-focus-inner
 #tbar-contact-window .right p { padding:0; margin:20px 0 0; }
 #tbar-contact-window .right textarea { width:97%; height:154px; margin:0 0 0px; border:1px solid #ccc; padding:3px; }
 #tbar-contact-window label { font-size:1.2em!important; font-family:arial, verdana, tahoma, sans-serif; }
-#tbar-contact-window p.submit { width:100%; padding:0!important; margin:0!important; }
+#tbar-contact-window p.submit { width:100%; padding:0!important; margin:0!important; position:relative;; top:22px; right:5px; }
 #tbar-contact-window p.submit a { float:right; margin-right:10px; }
 #tbar-contact-window .right .tbar-input-wrap { margin:0!important; padding:0!important; }
 
@@ -231,3 +231,5 @@ tbar-button::-moz-focus-inner
     50% { -moz-transform:rotate(360deg) scale(1.5) }
     100% { -moz-transform:rotate(720deg) scale(.5) }
 }
+
+.tblink { position:relative; top:15px; left:10px; width:281px; height:44px; display:block; text-indent:-9999px; overflow:hidden; float:left; }

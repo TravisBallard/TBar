@@ -13,7 +13,7 @@
         ?>
         <div id="tbar-window">
             <div id="tbar-contact-window">
-                <h1>Request a quote for custom plugin development</h1>
+                <h1 class="page-title">Request a quote for custom plugin development</h1>
                 <div class="wrap">
                     <div class="ajax"></div>
                     <div id="ajax-reply"></div>
@@ -40,7 +40,8 @@
                             </p>
                         </div>
                         <div class="tbar-clear"></div>
-                        <p class="submit tbar-input-wrap"><a class="tbar-button submit">Send Email</a></p>
+                        <a href="http://travisballard.com" class="tblink notop" target="_blank">Visit TravisBallard.com</a>
+                        <p class="submit tbar-input-wrap notop"><a class="tbar-button-2 color blue submit">Send Email</a></p>
                     </form>
                 </div>
             </div>

@@ -13,7 +13,7 @@
         ?>
         <div id="tbar-window">
             <div id="tbar-contact-window">
-                <h1>Request a quote for custom theme development</h1>
+                <h1 class="page-title">Request a quote for custom theme development</h1>
                 <div class="wrap">
                     <div class="ajax"></div>
                     <div id="ajax-reply"></div>
@@ -34,13 +34,14 @@
                         </div>
                         <div class="right">
                             <p class="plugin-requirements-input tbar-input-wrap">
-                                <label for="description">Theme Requirements &amp; Project Overview <span class="required">*</span></label>
+                                <label for="description">Message <span class="required">*</span></label>
                                 <textarea name="plugin[description]" id="description" cols="50" rows="5"></textarea>
-                                <input id="inquiry-type" type="hidden" value="theme" />
+                                <input id="inquiry-type" type="hidden" value="contact" />
                             </p>
                         </div>
                         <div class="tbar-clear"></div>
-                        <p class="submit tbar-input-wrap"><a class="tbar-button submit">Send Email</a></p>
+                        <a href="http://travisballard.com" class="tblink notop" target="_blank">Visit TravisBallard.com</a>
+                        <p class="submit tbar-input-wrap notop"><a class="tbar-button-2 color blue submit">Send Email</a></p>
                     </form>
                 </div>
             </div>
