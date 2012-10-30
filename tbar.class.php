@@ -313,7 +313,7 @@
         *
         */
         public function is_disabled(){
-            return (bool)$this->settings['disabled'];
+            return isset( $this->settings['disabled'] ) ? (bool)$this->settings['disabled'] : false;
         }
     }
 
